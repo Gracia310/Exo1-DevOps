@@ -21,3 +21,7 @@ def find_aws_ip(aws_ip_range_data, ip_to_find):
   return [prefix for prefix in aws_ip_range_data if ipaddress.ip_address(ip_to_find) in ipaddress.ip_network(prefix['ip_prefix'])]
 
 sys.stdout.write(json.dumps(find_aws_ip(download_aws_ip_set(), sys.argv[1]),indent=2))
+
+def nombreadd(prefix):
+  network = ipaddress.ip_network(prefix["ip_prefix"])
+  return network.num_addresses
