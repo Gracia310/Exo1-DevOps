@@ -5,7 +5,8 @@ import sys
 
 def download_aws_ip_set():
   """Downloads the AWS IP range JSON file and returns it as a dictionary."""
-  print("test rebase conflit Sophie")
+  print("Test rebase conflit avec Sophie ")
+
   # URL of the AWS IP range JSON file
   aws_ip_range_url = 'https://ip-ranges.amazonaws.com/ip-ranges.json'
 
