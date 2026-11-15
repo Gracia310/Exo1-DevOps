@@ -17,15 +17,27 @@ def download_aws_ip_set():
 
 # Find ip given IP belongs to any AWS Service
 def find_aws_ip(aws_ip_range_data, ip_to_find):
+
   """Finds the AWS IP range that contains the given IP address."""
+
   ip = ipaddress.ip_address(ip_to_find)
+
   results = []
+ 
   for prefix in aws_ip_range_data:
+
     network = ipaddress.ip_network(prefix['ip_prefix'])
+ 
     if ip in network:
+
       prefix['first_ip'] = str(network[0])
+
       prefix['last_ip'] = str(network[-1])
+
+      prefix['num_ips'] = network.num_addresses
+
       results.append(prefix)
+ 
   return results
 
-sys.stdout.write(json.dumps(find_aws_ip(download_aws_ip_set(), sys.argv[1]),indent=2))
+sys.stdout.write(json.dumps(find_aws_ip(download_aws_ip_set(), sys.argv[1]), indent=2))
